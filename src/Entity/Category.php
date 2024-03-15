@@ -9,12 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[Groups(['json_category'])]
 class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['json_movie'])]
+
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
@@ -22,7 +24,8 @@ class Category
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'category')]
-    private Collection $movies;
+  
+    private Collection $movies; 
 
     public function __construct()
     {
@@ -59,9 +62,10 @@ class Category
     }
     /**
      * @return Collection<int, Movie>
-     */
+     */  
     public function getMovies(): Collection
     {
+        
         return $this->movies;
     }
 
