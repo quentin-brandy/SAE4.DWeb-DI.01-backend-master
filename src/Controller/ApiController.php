@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,8 +26,8 @@ class ApiController extends AbstractController
       $response = new JsonResponse( $data );
       return $response;
     }
-    #[Route('/api/category/{id}', name: 'app_api_movie')]
-    public function readCategory(Movie $mov, SerializerInterface $serializer ): Response
+    #[Route('/api/category/{id}', name: 'app_api_category')]
+    public function readCategory(Category $mov, SerializerInterface $serializer ): Response
     {
       $data = $serializer->normalize($mov, null, ['groups' => 'json_category']);
       $response = new JsonResponse( $data );

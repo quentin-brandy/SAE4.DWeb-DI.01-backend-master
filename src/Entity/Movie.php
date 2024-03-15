@@ -19,9 +19,11 @@ class Movie
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['json_category'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['json_category'])]
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'movies')]
