@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
+
+
 use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
+#[Groups(['json_movie'])]
 class Movie
 {
     #[ORM\Id]

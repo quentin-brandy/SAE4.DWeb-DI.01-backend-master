@@ -19,17 +19,17 @@ class ApiController extends AbstractController
         ]);
     }
     #[Route('/api/movie/{id}', name: 'app_api_movie')]
-public function readMovie(Movie $mov, SerializerInterface $serializer ): Response
-{
-    // $serializer est un service de Symfony injecté dans la méthode readMovie
-    // $data est la représentation serialisée/normalisée de l'entity $mov
-    $data = $serializer->normalize($mov, null);
-    // $response est une instance de JsonResponse qui hérite de Response
-    // C'est la classe à utiliser lorsque l'on veut retourner du JSON
-    // $data sera automatiquement encodé en JSON
-    $response = new JsonResponse( $data );
-    return $response;
-}
-
-
+    public function readMovie(Movie $mov, SerializerInterface $serializer ): Response
+    {
+      $data = $serializer->normalize($mov, null, ['groups' => 'json_movie']);
+      $response = new JsonResponse( $data );
+      return $response;
+    }
+    #[Route('/api/category/{id}', name: 'app_api_movie')]
+    public function readCategory(Movie $mov, SerializerInterface $serializer ): Response
+    {
+      $data = $serializer->normalize($mov, null, ['groups' => 'json_category']);
+      $response = new JsonResponse( $data );
+      return $response;
+    }
 }
